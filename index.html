@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prof. Ravell - Especialista em Tecnologias Digitais</title>
+    <meta name="description" content="Aulas particulares, assessoria e suporte em tecnologia com o Prof. Ravell. Aprenda informática, do básico ao avançado, e resolva seus problemas digitais.">
+    
+    <meta property="og:title" content="Prof. Ravell - Especialista em Tecnologias Digitais">
+    <meta property="og:description" content="Personal Assistant e Professor Particular de Tecnologias Digitais">
+    <meta property="og:image" content="https://i.ibb.co/k1D6Hgy/unnamed.jpg">
+    <meta property="og:url" content="https://ravellsl.github.io/rstech/">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    
+    <style>
+        /* Variáveis de Tema */
+        :root {
+            --primary-color: #007BFF;
+            --primary-hover: #0056b3;
+            --text-color: #333;
+            --text-light: #555;
+            --bg-profile: #f0f2f5;
+            --bg-services: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        /* Estilos Globais */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden; /* Previne a rolagem na visualização de desktop */
+        }
+
+        .main-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* --- Painel Esquerdo (Perfil) --- */
+        .profile-panel {
+            flex: 0 0 45%;
+            background-color: var(--bg-profile);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2vw;
+            transition: all 0.3s ease;
+        }
+
+        .profile-image {
+            width: clamp(100px, 12vw, 160px);
+            height: clamp(100px, 12vw, 160px);
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5vh;
+            border: 3px solid var(--bg-services);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-panel h1 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .profile-panel .subtitle {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            color: var(--text-light);
+            max-width: 90%;
+            margin: 1vh 0 3vh;
+        }
+
+        .aluno-btn {
+            background: linear-gradient(45deg, #009eff, #0056b3);
+            background-size: 200% auto;
+            color: white;
+            border: none;
+            padding: clamp(10px, 1.2vw, 14px) clamp(20px, 2.5vw, 30px);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 1.4vw, 1rem);
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+            transition: all 0.4s ease;
+            white-space: nowrap;
+        }
+
+        .aluno-btn:hover,
+        .aluno-btn:focus-visible {
+            background-position: right center;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+            outline: none;
+        }
+
+        .aluno-btn i {
+            margin-right: 8px;
+        }
+
+        .social-links {
+            margin-top: 4vh;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+            margin: 0 clamp(8px, 1vw, 12px);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus-visible {
+            color: var(--primary-color);
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        /* --- Painel Direito (Serviços) --- */
+        .services-panel {
+            flex: 1;
+            background-color: var(--bg-services);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2vw;
+            overflow-y: auto;
+        }
+
+        .services-panel h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            margin-bottom: 4vh; 
+            text-align: center;
+        }
+        
+        .toggle-icon {
+            display: none;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(15px, 2vw, 25px);
+            width: 100%;
+            max-width: 720px; 
+        }
+
+        .service-card {
+            aspect-ratio: 4 / 3; /* AJUSTE DEFINITIVO: Retângulo suave para economizar altura */
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: clamp(10px, 1.8vw, 20px);
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .service-card:hover,
+        .service-card:focus-visible {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .service-card img {
+            width: clamp(40px, 6vw, 70px);
+            height: clamp(40px, 6vw, 70px);
+            margin-bottom: 1.5vh;
+        }
+
+        .service-card h3 {
+            margin: 0 0 0.5vh 0;
+            font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+            line-height: 1.4;
+        }
+
+        /* --- Rodapé --- */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            font-size: 0.8rem;
+            color: #aaa;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .footer p {
+            margin: 0;
+        }
+
+        /* --- Responsividade Otimizada para Celulares --- */
+        @media (max-width: 800px) {
+            html, body {
+                overflow: auto;
+                scroll-behavior: smooth;
+            }
+
+            .main-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .profile-panel, .services-panel {
+                padding: 3rem 1.5rem;
+            }
+
+            /* --- ESTILOS DO ACCORDION (SANFONA) --- */
+            .services-panel h2 {
+                margin-bottom: 0; 
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* No mobile, o card volta a ser quadrado para um melhor toque */
+            .service-card {
+                aspect-ratio: 1 / 1;
+            }
+
+            .toggle-icon {
+                display: inline;
+                font-weight: 700;
+                font-size: 2rem;
+                transition: transform 0.3s ease-out;
+            }
+            
+            .services-panel h2.active .toggle-icon {
+                transform: rotate(135deg);
+            }
+
+            .services-container {
+                grid-template-columns: 1fr;
+                max-height: 0;
+                overflow: hidden;
+                margin-top: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                transition: max-height 0.5s ease-in-out, margin-top 0.3s ease-in-out, padding 0.3s ease-in-out;
+            }
+
+            .services-container.active {
+                max-height: 1500px; 
+                margin-top: 2rem; 
+            }
+            
+            /* --- MELHORIA DE FONTE NOS CARDS --- */
+            .service-card h3 {
+                font-size: 1.1rem; 
+            }
+            .service-card p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .footer {
+                position: relative;
+                background: var(--bg-profile);
+                padding: 1.5rem;
+                color: var(--text-light);
+                border-top: 1px solid var(--border-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <section class="profile-panel">
+            <img class="profile-image" alt="Foto de perfil de Ravell" src="https://i.ibb.co/9t4389v/unnamed.jpg"/>
+            <h1>Ravell</h1>
+            <p class="subtitle">Personal Assistant e Professor Particular de Tecnologias Digitais.</p>
+            
+            <a href="https://ravellsl.github.io/login/" target="_blank" rel="noopener noreferrer" class="aluno-btn">
+                <i class="fas fa-user-graduate"></i>
+                Área do Aluno
+            </a>
+
+            <div class="social-links">
+                <a href="https://wa.me/5581984132629" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/ravell-souza-lopes-573968287" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/ravell_lopes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:ravell.lopes@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+
+        <main class="services-panel">
+            <h2 id="services-toggle" role="button" aria-expanded="false" aria-controls="services-content">
+                Como posso te ajudar?
+                <span class="toggle-icon">+</span>
+            </h2>
+            <div class="services-container" id="services-content">
+                <a href="https://ravellsl.github.io/inclusao_digital/" target="_blank" rel="noopener noreferrer" class="service-card">
+                    <img alt="Ícone representando Inclusão Digital" src="https://images.vexels.com/media/users/3/135729/isolated/preview/d09f185e1e94cbc95cfbba1808a0cbdc-icone-plano-do-computador.png"/>
+                    <h3>Inclusão Digital</h3>
+                    <p>Aprenda os conceitos e ferramentas básicas da informática!</p>
+                </a>
+                <a href="https://ravellsl.github.io/expansao_digital/" target="_blank" rel="noopener noreferrer" class="service-card">
+                    <img alt="Ícone representando Expansão Digital" src="https://images.vexels.com/media/users/3/136252/isolated/preview/9ba1b6a847b1d5c7f006d872b0916101-dispositivos-de-conexao-a-internet.png"/>
+                    <h3>Expansão Digital</h3>
+                    <p>Amplie seus conhecimentos em tecnologia!</p>
+                </a>
+                <a href="https://ravellsl.github.io/suporte_tecnico/" target="_blank" rel="noopener noreferrer" class="service-card">
+                    <img alt="Ícone representando Suporte Técnico" src="https://octogreen.com.br/Images/Suporte.png"/>
+                    <h3>Suporte Técnico</h3>
+                    <p>Manutenções preventivas ou corretivas para seus equipamentos.</p>
+                </a>
+                <a href="https://ravellsl.github.io/assessoria_tecnologica/" target="_blank" rel="noopener noreferrer" class="service-card">
+                    <img alt="Ícone representando Assessoria Tecnológica" src="https://cdn.pixabay.com/photo/2017/08/28/17/55/computers-2690565_960_720.png"/>
+                    <h3>Assessoria</h3>
+                    <p>Assessoria sob medida para suas demandas digitais.</p>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; <span id="current-year"></span> Prof. Ravell.</p>
+    </footer>
+
+    <script>
+        // Script para atualizar o ano no rodapé
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+        // Script para controlar o accordion (sanfona) na visualização móvel
+        document.addEventListener('DOMContentLoaded', () => {
+            const servicesToggle = document.getElementById('services-toggle');
+            const servicesContent = document.getElementById('services-content');
+            
+            if (servicesToggle && servicesContent) {
+                servicesToggle.addEventListener('click', () => {
+                    // Adiciona ou remove a classe 'active' para ativar as transições no CSS
+                    servicesToggle.classList.toggle('active');
+                    servicesContent.classList.toggle('active');
+
+                    // Atualiza os atributos de acessibilidade
+                    const isExpanded = servicesToggle.classList.contains('active');
+                    servicesToggle.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
